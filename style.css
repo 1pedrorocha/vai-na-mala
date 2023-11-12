@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
+
+:root {
+  /* colors */
+  --main-color: #fff970;
+  --background-color: #101c2e;
+  --card-color: #273242;
+  --light-color: #edf1f8;
+  --secondary-link-color: #5c8afe;
+  --tertiary-text-color: #3c495e;
+
+  /* fonts */
+  --main-font: "Josefin Sans", sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: var(--main-font);
+}
+
+.mobile-wrap-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 48px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+h1 {
+  font-weight: 600;
+  color: var(--main-color);
+  font-size: 36px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  color: var(--tertiary-text-color);
+  text-decoration: none;
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+footer a {
+  margin-top: 12px;
+  color: var(--tertiary-text-color);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.add-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--light-color);
+  height: 60px;
+  border-radius: 200px;
+  margin-bottom: 16px;
+  width: 84%;
+  padding: 0 0 0 8px;
+}
+
+#cancel-item {
+  background-color: #00000000;
+  border: none;
+}
+
+#item-input {
+  background-color: #00000000;
+  border: none;
+  font-family: var(--main-font);
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+}
+
+#item-input:focus {
+  background-color: #00000000;
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
+#item-input:active {
+  background-color: #00000000;
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
+#post-item {
+  width: 60px;
+  height: 60px;
+  border-radius: 200px;
+  background-color: var(--main-color);
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.add-closed {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 60px;
+  margin-bottom: 16px;
+  width: 84%;
+  padding: 0 0 0 8px;
+}
+
+#add-item-closed {
+  width: 60px;
+  height: 60px;
+  border-radius: 200px;
+  background-color: var(--main-color);
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.hidden {
+  display: none;
+}
