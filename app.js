@@ -70,7 +70,6 @@ postBt.addEventListener("click", () => {
       addClosed.classList.remove("hidden");
 
       currentItem.id = verifiedItem.id;
-      //   console.log(currentItem.id);
 
       // If the verified item is not checked, it makes it checked.
       checkItem(verifiedItem);
@@ -79,10 +78,6 @@ postBt.addEventListener("click", () => {
       localStorage.setItem("items", JSON.stringify(items));
 
       updateList();
-
-      console.log(items[verifiedItem.id]);
-
-      updateElement(currentItem);
 
       return;
     }
@@ -102,6 +97,7 @@ postBt.addEventListener("click", () => {
   addClosed.classList.remove("hidden");
 });
 
+// CHECK ITEM
 function checkItem(itemToBeChecked) {
   if (itemToBeChecked.isChecked == false) {
     items[itemToBeChecked.id] = {
@@ -148,6 +144,7 @@ uncheckListlBt.addEventListener("click", () => {
     element.isChecked = false;
   });
   localStorage.setItem("items", JSON.stringify(items));
+  updateList();
 });
 
 // This function creates the item on the interface, receiving data from the local storage
@@ -175,14 +172,3 @@ function createItem(item) {
 }
 
 ///
-
-// dando check
-function updateElement(item) {
-  let test = document.querySelector("[data-id='" + item.id + "']");
-  //   test.innerHTML = `${test.innerHTML} - checked`;
-
-  //   let parentTest = document.querySelector("[data-id='parent" + item.id + "']");
-  //   parentTest.classList.add("checked");
-
-  console.log(test.textContent);
-}
