@@ -4,7 +4,23 @@ const addBt = document.getElementById("add-item-closed");
 const cancelBt = document.getElementById("cancel-item");
 const addClosed = document.querySelector(".add-closed");
 const addItem = document.querySelector(".add-item");
-const items = JSON.parse(localStorage.getItem("items")) || [];
+const items = JSON.parse(localStorage.getItem("items")) || [
+  {
+    id: 0,
+    name: "Carregador do notebook",
+    isChecked: true,
+  },
+  {
+    id: 1,
+    name: "Meias",
+    isChecked: false,
+  },
+  {
+    id: 2,
+    name: "Perfume",
+    isChecked: false,
+  },
+];
 
 // const items =
 //   JSON.parse(localStorage.getItem("items")) ||
@@ -182,10 +198,10 @@ function createItem(item) {
   //verifies if the option is checked and updates the list on the interface
   if (item.isChecked == true) {
     a.classList.add("checked");
-    // checkIcon.classList.remove("hidden");
+    checkIcon.classList.remove("hidden");
   } else {
     a.classList.remove("checked");
-    // checkIcon.classList.add("hidden");
+    checkIcon.classList.add("hidden");
   }
 
   let itemContent = document.createElement("h3");
