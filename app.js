@@ -6,9 +6,11 @@ const addClosed = document.querySelector(".add-closed");
 const addItem = document.querySelector(".add-item");
 // const items = JSON.parse(localStorage.getItem("items")) || [];
 
-const items = JSON.parse(
-  '[{"id":0,"name":"6 camisetas","isChecked":true},{"id":1,"name":"3 calças","isChecked":false},{"id":2,"name":"Carregador de celular","isChecked":false}]'
-);
+const items =
+  JSON.parse(localStorage.getItem("items")) ||
+  JSON.parse(
+    '[{"id":0,"name":"6 camisetas","isChecked":true},{"id":1,"name":"3 calças","isChecked":false},{"id":2,"name":"Carregador de celular","isChecked":false}]'
+  );
 
 ////
 
