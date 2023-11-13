@@ -4,7 +4,11 @@ const addBt = document.getElementById("add-item-closed");
 const cancelBt = document.getElementById("cancel-item");
 const addClosed = document.querySelector(".add-closed");
 const addItem = document.querySelector(".add-item");
-const items = JSON.parse(localStorage.getItem("items")) || [];
+// const items = JSON.parse(localStorage.getItem("items")) || [];
+
+const items = JSON.parse(
+  '[{"id":0,"name":"6 camisetas","isChecked":true},{"id":1,"name":"3 calças","isChecked":false},{"id":2,"name":"Carregador de celular","isChecked":false}]'
+);
 
 ////
 
@@ -176,10 +180,10 @@ function createItem(item) {
   //verifies if the option is checked and updates the list on the interface
   if (item.isChecked == true) {
     a.classList.add("checked");
-    // checkIcon.classList.remove("hidden");
+    checkIcon.classList.remove("hidden");
   } else {
     a.classList.remove("checked");
-    // checkIcon.classList.add("hidden");
+    checkIcon.classList.add("hidden");
   }
 
   let itemContent = document.createElement("h3");
