@@ -51,16 +51,36 @@ input.addEventListener("blur", () => {
 postBt.addEventListener("click", () => {
   if (input.value != "") {
     const currentItem = {
+      id: 0,
       name: input.value,
       isChecked: false,
     };
+
+    const verifiedItem = items.find((element) => element.name === input.value);
+
+    // Bloqueia adicionar dois elementos iguais
+    if (verifiedItem) {
+      input.value = "";
+      addItem.classList.add("hidden");
+      addClosed.classList.remove("hidden");
+
+      currentItem.id = verifiedItem.id;
+
+      console.log(currentItem.id);
+      updateElement(currentItem);
+
+      return;
+    }
+
+    // Cria um ID que sobe 1 pra cada novo item no array
+
+    currentItem.id = items.length;
 
     items.push(currentItem);
     localStorage.setItem("items", JSON.stringify(items));
 
     updateList();
   }
-  //   items = JSON.parse(localStorage.getItem("items")) || [];
 
   input.value = "";
   addItem.classList.add("hidden");
@@ -105,11 +125,23 @@ function createItem(item) {
 
   let a = document.createElement("a");
   a.classList.add("list-item");
+  a.dataset.id = `parent${item.id}`;
 
   let itemContent = document.createElement("h3");
   itemContent.textContent = item.name;
+  itemContent.dataset.id = item.id;
 
   a.appendChild(itemContent);
   listItem.appendChild(a);
   itemList.appendChild(listItem);
+}
+
+///
+
+// dando check
+function updateElement(item) {
+  let test = document.querySelector("[data-id='" + item.id + "']");
+
+  let parentTest = document.querySelector("[data-id='parent" + item.id + "']");
+  parentTest.classList.add("checked");
 }
