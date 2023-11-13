@@ -6,8 +6,6 @@ const addClosed = document.querySelector(".add-closed");
 const addItem = document.querySelector(".add-item");
 const items = JSON.parse(localStorage.getItem("items")) || [];
 
-// console.log(JSON.parse(ot));
-
 ////
 
 const itemList = document.querySelector(".item-list");
@@ -72,7 +70,7 @@ postBt.addEventListener("click", () => {
       currentItem.id = verifiedItem.id;
 
       // If the verified item is not checked, it makes it checked.
-      checkItem(verifiedItem);
+      //   checkItem(verifiedItem);
 
       // Then, it updates the local storage
       localStorage.setItem("items", JSON.stringify(items));
@@ -150,45 +148,69 @@ uncheckListlBt.addEventListener("click", () => {
 // This function creates the item on the interface, receiving data from the local storage
 function createItem(item) {
   let listItem = document.createElement("li");
+  listItem.dataset.id = `li${item.id}`;
+  listItem.classList.add("list-item-container");
 
   let a = document.createElement("a");
   a.classList.add("list-item");
   a.dataset.id = `parent${item.id}`;
-  a.addEventListener("click", () => {
-    console.log(`check ${JSON.stringify(item)}`);
 
+  // CLICK ON THE LIST ITEM TO CHECK IT \/
+  a.addEventListener("click", () => {
     if (item.isChecked == false) {
       item.isChecked = true;
     } else if (item.isChecked == true) {
       item.isChecked = false;
     }
-
+    localStorage.setItem("items", JSON.stringify(items));
     updateList();
   });
+
+  const checkIcon = document.createElement("div");
+  checkIcon.classList.add("hidden");
+  checkIcon.innerHTML = `<img src="/img/checkmark.png" alt="remove button icon">`;
 
   //verifies if the option is checked and updates the list on the interface
   if (item.isChecked == true) {
     a.classList.add("checked");
+    checkIcon.classList.remove("hidden");
   } else {
     a.classList.remove("checked");
+    checkIcon.classList.add("hidden");
   }
 
   let itemContent = document.createElement("h3");
   itemContent.textContent = item.name;
   itemContent.dataset.id = item.id;
 
+  //   CANCEL BUTTON \/
   const btnElement = document.createElement("button");
   btnElement.innerHTML = `
     <img src="/img/remove.png" alt="remove button icon">`;
   btnElement.classList.add("delete-button");
-  btnElement.addEventListener("click", () => {
-    console.log(`delete ${JSON.stringify(item.name)}`);
+
+  btnElement.addEventListener("click", function () {
+    deleteItem(item.id);
   });
 
   a.appendChild(itemContent);
-  a.appendChild(btnElement);
+  a.appendChild(checkIcon);
+
   listItem.appendChild(a);
+  listItem.appendChild(btnElement);
   itemList.appendChild(listItem);
+}
+
+function deleteItem(id) {
+  //   To remove an item from the Array, we use the method splice()
+  items.splice(
+    items.findIndex((element) => element.id === id),
+    1
+  );
+
+  localStorage.setItem("items", JSON.stringify(items));
+
+  updateList();
 }
 
 // function deleteButton() {
