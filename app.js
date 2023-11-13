@@ -171,7 +171,7 @@ function createItem(item) {
 
   const checkIcon = document.createElement("div");
   checkIcon.classList.add("hidden");
-  checkIcon.innerHTML = `<img src="/img/checkmark.png" alt="remove button icon">`;
+  checkIcon.innerHTML = `<img src="./img/checkmark.png" alt="remove button icon">`;
 
   //verifies if the option is checked and updates the list on the interface
   if (item.isChecked == true) {
@@ -189,7 +189,7 @@ function createItem(item) {
   //   CANCEL BUTTON \/
   const btnElement = document.createElement("button");
   btnElement.innerHTML = `
-    <img src="/img/remove.png" alt="remove button icon">`;
+    <img src="./img/remove.png" alt="remove button icon">`;
   btnElement.classList.add("delete-button");
 
   btnElement.addEventListener("click", function () {
@@ -219,7 +219,7 @@ function deleteItem(id) {
 // function deleteButton() {
 //   const btnElement = document.createElement("button");
 //   btnElement.innerHTML = `
-//     <img src="/img/remove.png" alt="remove button icon">`;
+//     <img src="./img/remove.png" alt="remove button icon">`;
 //   btnElement.classList.add("delete-button");
 // }
 
