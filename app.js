@@ -170,16 +170,16 @@ function createItem(item) {
   });
 
   const checkIcon = document.createElement("div");
-  checkIcon.classList.add("hidden");
+  //   checkIcon.classList.add("hidden");
   checkIcon.innerHTML = `<img src="./img/checkmark.png" alt="remove button icon">`;
 
   //verifies if the option is checked and updates the list on the interface
   if (item.isChecked == true) {
     a.classList.add("checked");
-    checkIcon.classList.remove("hidden");
+    // checkIcon.classList.remove("hidden");
   } else {
     a.classList.remove("checked");
-    checkIcon.classList.add("hidden");
+    // checkIcon.classList.add("hidden");
   }
 
   let itemContent = document.createElement("h3");
