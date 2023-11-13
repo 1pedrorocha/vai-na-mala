@@ -14,8 +14,8 @@ const itemList = document.querySelector(".item-list");
 const listItem = document.querySelector(".list-item");
 const clearListBt = document.querySelector(".clear-list");
 
-// UPDATE LIST
-function updateList() {
+// VERIFY IF THE LIST IS EMPTY TO SHOW MESSAGE
+function verifyClear() {
   if (items.length == 0) {
     const emptyList = document.querySelector(".empty-list");
     emptyList.classList.remove("hidden");
@@ -29,7 +29,11 @@ function updateList() {
     const listOptions = document.querySelector(".list-options");
     listOptions.classList.remove("hidden");
   }
+}
 
+// UPDATE LIST
+function updateList() {
+  verifyClear();
   itemList.innerHTML = "";
   items.forEach((element) => {
     createItem(element);
@@ -58,15 +62,38 @@ postBt.addEventListener("click", () => {
 
     const verifiedItem = items.find((element) => element.name === input.value);
 
-    // Bloqueia adicionar dois elementos iguais
+    // Blocks the creation of the same element twice \/
     if (verifiedItem) {
+      // In this first part, it closes the input
       input.value = "";
       addItem.classList.add("hidden");
       addClosed.classList.remove("hidden");
 
       currentItem.id = verifiedItem.id;
+      //   console.log(currentItem.id);
 
-      console.log(currentItem.id);
+      // If the verified item is not checked, it makes it checked.
+
+      if (verifiedItem.isChecked == false) {
+        items[verifiedItem.id] = {
+          id: verifiedItem.id,
+          name: verifiedItem.name,
+          isChecked: true,
+        };
+      } else {
+        items[verifiedItem.id] = {
+          id: verifiedItem.id,
+          name: verifiedItem.name,
+          isChecked: false,
+        };
+      }
+      // Then, it updates the local storage
+      localStorage.setItem("items", JSON.stringify(items));
+
+      updateList();
+
+      console.log(items[verifiedItem.id]);
+
       updateElement(currentItem);
 
       return;
@@ -120,12 +147,20 @@ uncheckListlBt.addEventListener("click", () => {
   localStorage.setItem("items", JSON.stringify(items));
 });
 
+// This function creates the item on the interface, receiving data from the local storage
 function createItem(item) {
   let listItem = document.createElement("li");
 
   let a = document.createElement("a");
   a.classList.add("list-item");
   a.dataset.id = `parent${item.id}`;
+
+  //verifies if the option is checked and updates the list on the interface
+  if (item.isChecked == true) {
+    a.classList.add("checked");
+  } else {
+    a.classList.remove("checked");
+  }
 
   let itemContent = document.createElement("h3");
   itemContent.textContent = item.name;
@@ -141,7 +176,10 @@ function createItem(item) {
 // dando check
 function updateElement(item) {
   let test = document.querySelector("[data-id='" + item.id + "']");
+  //   test.innerHTML = `${test.innerHTML} - checked`;
 
-  let parentTest = document.querySelector("[data-id='parent" + item.id + "']");
-  parentTest.classList.add("checked");
+  //   let parentTest = document.querySelector("[data-id='parent" + item.id + "']");
+  //   parentTest.classList.add("checked");
+
+  console.log(test.textContent);
 }
