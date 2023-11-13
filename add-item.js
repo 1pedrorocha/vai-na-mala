@@ -12,11 +12,16 @@ const addItem = document.querySelector(".add-item");
 
 const items = JSON.parse(localStorage.getItem("items")) || [];
 
-console.log(items);
+// console.log(items);
 
-items.forEach((element) => {
-  console.log(element.name, element.isChecked, "ok");
-});
+function updateList() {
+  itemList.innerHTML = "";
+  items.forEach((element) => {
+    createItem(element);
+  });
+}
+
+updateList();
 
 // input
 input.addEventListener("focus", () => {
@@ -29,7 +34,7 @@ input.addEventListener("blur", () => {
 
 // post button
 postBt.addEventListener("click", () => {
-  console.log("item: " + input.value + ", isChecked: false");
+  //   console.log("item: " + input.value + ", isChecked: false");
 
   const currentItem = {
     name: input.value,
@@ -39,7 +44,7 @@ postBt.addEventListener("click", () => {
   items.push(currentItem);
   localStorage.setItem("items", JSON.stringify(items));
 
-  createItem(input.value);
+  updateList();
 
   input.value = "";
   addItem.classList.add("hidden");
