@@ -154,6 +154,17 @@ function createItem(item) {
   let a = document.createElement("a");
   a.classList.add("list-item");
   a.dataset.id = `parent${item.id}`;
+  a.addEventListener("click", () => {
+    console.log(`check ${JSON.stringify(item)}`);
+
+    if (item.isChecked == false) {
+      item.isChecked = true;
+    } else if (item.isChecked == true) {
+      item.isChecked = false;
+    }
+
+    updateList();
+  });
 
   //verifies if the option is checked and updates the list on the interface
   if (item.isChecked == true) {
@@ -166,9 +177,25 @@ function createItem(item) {
   itemContent.textContent = item.name;
   itemContent.dataset.id = item.id;
 
+  const btnElement = document.createElement("button");
+  btnElement.innerHTML = `
+    <img src="/img/remove.png" alt="remove button icon">`;
+  btnElement.classList.add("delete-button");
+  btnElement.addEventListener("click", () => {
+    console.log(`delete ${JSON.stringify(item.name)}`);
+  });
+
   a.appendChild(itemContent);
+  a.appendChild(btnElement);
   listItem.appendChild(a);
   itemList.appendChild(listItem);
 }
+
+// function deleteButton() {
+//   const btnElement = document.createElement("button");
+//   btnElement.innerHTML = `
+//     <img src="/img/remove.png" alt="remove button icon">`;
+//   btnElement.classList.add("delete-button");
+// }
 
 ///

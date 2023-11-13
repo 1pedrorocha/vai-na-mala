@@ -232,3 +232,8 @@ footer a {
 .hidden {
   display: none;
 }
+
+.delete-button {
+  background-color: #00000000;
+  border: none;
+}
