@@ -106,7 +106,9 @@ postBt.addEventListener("click", () => {
 
     // Cria um ID que sobe 1 pra cada novo item no array
 
-    currentItem.id = items.length;
+    currentItem.id = items[items.length - 1]
+      ? items[items.length - 1].id + 1
+      : 0;
 
     items.push(currentItem);
     localStorage.setItem("items", JSON.stringify(items));
