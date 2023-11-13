@@ -77,6 +77,8 @@ postBt.addEventListener("click", () => {
 
       updateList();
 
+      highlightExistingItem(verifiedItem);
+
       return;
     }
 
@@ -154,6 +156,7 @@ function createItem(item) {
   let a = document.createElement("a");
   a.classList.add("list-item");
   a.dataset.id = `parent${item.id}`;
+  a.classList.add(`parent-class${item.id}`);
 
   // CLICK ON THE LIST ITEM TO CHECK IT \/
   a.addEventListener("click", () => {
@@ -221,3 +224,12 @@ function deleteItem(id) {
 // }
 
 ///
+function highlightExistingItem(existingItem) {
+  const itemToBeHighlighted = document.querySelector(
+    `.parent-class${existingItem.id}`
+  );
+
+  console.log(itemToBeHighlighted);
+
+  itemToBeHighlighted.classList.add("highlighted");
+}

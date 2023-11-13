@@ -242,6 +242,12 @@ footer a {
   border: none;
 }
 
+.highlighted {
+  border-color: var(--secondary-link-color);
+  border-width: 2px;
+  border-style: solid;
+}
+
 .hidden {
   display: none;
 }
