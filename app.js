@@ -1,41 +1,29 @@
-const input = document.getElementById("item-input");
+const itemList = document.querySelector(".item-list");
 
-const postBt = document.getElementById("post-item");
+function createItem(itemName) {
+  console.log(itemName);
 
-const addBt = document.getElementById("add-item-closed");
+  let listItem = document.createElement("li");
 
-const cancelBt = document.getElementById("cancel-item");
+  let div = document.createElement("div");
+  div.classList.add("list-item");
 
-const addClosed = document.querySelector(".add-closed");
+  let item = document.createElement("h3");
+  item.textContent = itemName;
 
-const addItem = document.querySelector(".add-item");
+  div.appendChild(item);
+  listItem.appendChild(div);
+  itemList.appendChild(listItem);
 
-// input
-input.addEventListener("focus", () => {
-  input.placeholder = "";
-});
+  console.log(listItem);
+  console.log(div);
+  console.log(item);
+}
 
-input.addEventListener("blur", () => {
-  input.placeholder = "Escreva o item";
-});
+const clearListBt = document.querySelector(".clear-list");
 
-// post button
-postBt.addEventListener("click", () => {
-  console.log(input.value);
-  input.value = "";
-  addItem.classList.add("hidden");
-  addClosed.classList.remove("hidden");
-});
-
-// cancel button
-cancelBt.addEventListener("click", () => {
-  input.value = "";
-  addItem.classList.add("hidden");
-  addClosed.classList.remove("hidden");
-});
-
-// add item closed button
-addBt.addEventListener("click", () => {
-  addItem.classList.remove("hidden");
-  addClosed.classList.add("hidden");
+// Clear list btn
+clearListBt.addEventListener("click", () => {
+  itemList.innerHTML = "";
+  localStorage.clear();
 });
