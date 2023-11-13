@@ -73,20 +73,8 @@ postBt.addEventListener("click", () => {
       //   console.log(currentItem.id);
 
       // If the verified item is not checked, it makes it checked.
+      checkItem(verifiedItem);
 
-      if (verifiedItem.isChecked == false) {
-        items[verifiedItem.id] = {
-          id: verifiedItem.id,
-          name: verifiedItem.name,
-          isChecked: true,
-        };
-      } else {
-        items[verifiedItem.id] = {
-          id: verifiedItem.id,
-          name: verifiedItem.name,
-          isChecked: false,
-        };
-      }
       // Then, it updates the local storage
       localStorage.setItem("items", JSON.stringify(items));
 
@@ -114,6 +102,21 @@ postBt.addEventListener("click", () => {
   addClosed.classList.remove("hidden");
 });
 
+function checkItem(itemToBeChecked) {
+  if (itemToBeChecked.isChecked == false) {
+    items[itemToBeChecked.id] = {
+      id: itemToBeChecked.id,
+      name: itemToBeChecked.name,
+      isChecked: true,
+    };
+  } else {
+    items[itemToBeChecked.id] = {
+      id: itemToBeChecked.id,
+      name: itemToBeChecked.name,
+      isChecked: false,
+    };
+  }
+}
 // cancel button
 cancelBt.addEventListener("click", () => {
   input.value = "";
