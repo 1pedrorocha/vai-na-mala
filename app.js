@@ -155,9 +155,9 @@ addBt.addEventListener("click", () => {
 
 // Clear list btn
 clearListBt.addEventListener("click", () => {
-  localStorage.clear();
   items.length = 0;
   itemList.innerHTML = "";
+  localStorage.setItem("items", JSON.stringify(items));
   updateList();
 });
 
